@@ -3,14 +3,19 @@
   "version": "1.0.0",
   "description": "the homework of module 2",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "task1": "nodemon src/task-2-1",
-    "task2": "nodemon src/task-2-2"
+    "task2": "nodemon src/task-2-2",
+    "task3": "babel src -d dist --presets @babel/preset-env"
   },
   "keywords": [],
   "author": "inqui",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.18.6",
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
     "nodemon": "^2.0.19"
   },
   "dependencies": {

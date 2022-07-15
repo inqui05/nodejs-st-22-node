@@ -1,6 +1,6 @@
-const fs = require('fs');
-const readline = require('readline');
-const csv = require('csvtojson');
+import fs from 'fs';
+import readline from 'readline';
+import csv from'csvtojson';
 
 const file = './src/nodejs-hw1-ex1.csv';
 const newFile = './src/nodejs-hw1.ex1.txt';

@@ -1,4 +1,5 @@
-const { stdin, stdout } = require('process');
+import { stdin, stdout } from 'process';
+
 stdin.setEncoding('utf8');
 
 const reverseAndSendToOutputStream = (string) => {
