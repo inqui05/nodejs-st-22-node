@@ -2,20 +2,22 @@ const fs = require('fs');
 const readline = require('readline');
 const csv = require('csvtojson');
 
-const file = './src/nodejs-hw1-ex1.csv';
-const newFile = './src/nodejs-hw1.ex1.txt';
+const FILE = './src/nodejs-hw1-ex1';
+const OPTIONS = {
+  ignoreColumns: /amount/i,
+  colParser: { "price": "number" },
+};
 
-const rStream = fs.createReadStream(file, {encoding: 'utf-8'});
-const wStream = fs.createWriteStream(newFile, {encoding: 'utf-8'});
+const rStream = fs.createReadStream(`${FILE}.csv`, {encoding: 'utf-8'});
+const wStream = fs.createWriteStream(`${FILE}.txt`, {encoding: 'utf-8'});
+
+const loggingErrors = (err) => console.error(err);
+const transformLine = (fileLine,lineNumber) => lineNumber === 0 ? fileLine.toLowerCase() : fileLine;
 
 const rl = readline.createInterface({
-  input: csv().fromStream(rStream),
-  output: wStream
+  input: csv(OPTIONS).fromStream(rStream).preFileLine(transformLine),
+  output: wStream,
 });
-
-const loggingErrors = (err) => {
-  console.error(err);
-}
 
 rl.on('line', (line) => {
   wStream.write(`${line}\n`);
